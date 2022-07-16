@@ -3,6 +3,6 @@ class Api::PostsController < ApplicationController
     user = User.find(params[:id])
     @posts = user.posts 
 
-    render json: @posts
+    render json: @posts.to_json(:include => [:user])
   end
 end
