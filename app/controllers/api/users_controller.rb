@@ -5,8 +5,32 @@ class Api::UsersController < ApplicationController
     render json: @user
   end
 
+  def user_posts 
+    @user = User.find(params[:id])
+    @posts = @user.posts 
+
+    render json: @posts.to_json(:include => [:user])
+  end
+
+  def user_and_friends_posts 
+    @user = User.find(params[:id])
+    @posts = []
+
+    @posts.push(@user.posts)
+    
+    @user.friends.each do |friend| 
+      @posts.push(friend.posts)
+    end
+
+    @posts = @posts.flatten
+
+    @posts = @posts.sort_by { |post| post.created_at }
+
+    render json: @posts.to_json(:include => [:user])
+  end
+
   def friends 
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
 
     render json: @user.friends
   end

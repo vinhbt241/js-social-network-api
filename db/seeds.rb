@@ -17,3 +17,21 @@ main_user.friends.push(friend_one, friend_two, friend_three)
 friend_one.friends.push(main_user)
 friend_two.friends.push(main_user)
 friend_three.friends.push(main_user)
+
+# Test friend posts
+friend_one_post_one = Post.new(content: "Hello, I'm Viktor, Vinh definitely can see this post!")
+friend_one_post_one.user = friend_one
+friend_one_post_one.save
+
+friend_one_post_two = Post.new(content: "Second post of Viktor haha!")
+friend_one_post_two.user = friend_one
+friend_one_post_two.save
+
+friend_two_post_one = Post.new(content: "Hello, I'm John, Vinh definitely can see this post!")
+friend_two_post_one.user = friend_two
+friend_two_post_one.save
+
+friend_three_post_one = Post.new(content: "Hello, I'm Julia, Vinh definitely can see this post!")
+friend_three_post_one.user = friend_three
+friend_three_post_one.save
+
