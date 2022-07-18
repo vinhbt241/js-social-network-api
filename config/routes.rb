@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     get '/users/:id/user_posts', to: 'users#user_posts'
     get '/users/:id/user_and_friends_posts', to:'users#user_and_friends_posts'
     get '/users/:id/friends', to: 'users#friends'
+
+    get '/posts/:id/comments', to:'posts#comments'
   end
 end
