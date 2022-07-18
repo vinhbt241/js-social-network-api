@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     get '/users/:id/friends', to: 'users#friends'
 
     get '/posts/:id/comments', to:'posts#comments'
+    get '/posts/:id/likes', to:'posts#likes'
   end
 end

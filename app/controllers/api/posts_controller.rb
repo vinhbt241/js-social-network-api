@@ -5,4 +5,11 @@ class Api::PostsController < ApplicationController
 
     render json: @comments.to_json(include: [:user])
   end
+
+  def likes 
+    @post =  Post.find(params[:id])
+    @likes = @post.likes.order(:created_at)
+
+    render json: @likes.to_json(include: [:user])
+  end
 end

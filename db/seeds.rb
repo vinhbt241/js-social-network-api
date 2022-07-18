@@ -35,7 +35,22 @@ friend_three_post_one = Post.new(content: "Hello, I'm Julia, Vinh definitely can
 friend_three_post_one.user = friend_three
 friend_three_post_one.save
 
-comment_one = Comment.create(content: "That is WHOLESOME, thanks Vinh!", post_id: 1, user_id: 2)
-comment_two = Comment.create(content: "You have a nice day too, Vinh <3", post_id: 1, user_id: 4)
-comment_three = Comment.create(content: "Almost forgot, remember to stop by my house today for your gift card!", post_id: 1, user_id: 4)
+Comment.create(content: "That is WHOLESOME, thanks Vinh!", post_id: 1, user_id: 2)
+Comment.create(content: "You have a nice day too, Vinh <3", post_id: 1, user_id: 4)
+Comment.create(content: "Almost forgot, remember to stop by my house today for your gift card!", post_id: 1, user_id: 4)
+
+Like.create(post_id: 1, user_id: 1)
+Like.create(post_id: 1, user_id: 2)
+Like.create(post_id: 1, user_id: 3)
+Like.create(post_id: 1, user_id: 4)
+
+Like.create(post_id: 2, user_id: 1)
+Like.create(post_id: 2, user_id: 2)
+Like.create(post_id: 2, user_id: 3)
+
+Like.create(post_id: 3, user_id: 1)
+Like.create(post_id: 3, user_id: 2)
+
+Like.create(post_id: 4, user_id: 1)
+
 
