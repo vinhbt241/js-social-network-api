@@ -1,7 +1,8 @@
 class Api::PostsController < ApplicationController
   def comments 
-    @posts = Post.find(params[:id])
+    @post = Post.find(params[:id])
+    @comments = @post.comments.order(:created_at)
 
-    render json: @posts.comments.to_json(include: [:user])
+    render json: @comments.to_json(include: [:user])
   end
 end
