@@ -7,9 +7,18 @@ class Api::UsersController < ApplicationController
 
   def user_posts 
     @user = User.find(params[:id])
-    @posts = @user.posts 
 
-    render json: @posts.to_json(include: [:user])
+    @posts = @user.posts
+
+    @posts = @posts.map do |post|
+      post.attributes.merge(
+        num_likes: post.likes.count,
+        num_comments: post.comments.count, 
+        user: post.user
+      )
+    end
+
+    render json: @posts
   end
 
   def user_and_friends_posts 
@@ -24,9 +33,17 @@ class Api::UsersController < ApplicationController
 
     @posts = @posts.flatten
 
-    @posts = @posts.sort_by { |post| post.created_at }
+    @posts = @posts.map do |post|
+      post.attributes.merge(
+        num_likes: post.likes.count,
+        num_comments: post.comments.count, 
+        user: post.user
+      )
+    end
 
-    render json: @posts.to_json(include: [:user])
+    @posts = @posts.sort_by { |post| post["created_at"] }
+
+    render json: @posts
   end
 
   def friends 
