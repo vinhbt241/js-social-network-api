@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     get '/posts/:id/likes', to:'posts#likes'
 
     resources :comments, only: [:create]
+    resources :likes, only: [:create]
   end
 end
