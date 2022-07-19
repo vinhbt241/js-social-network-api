@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
     get '/posts/:id/comments', to:'posts#comments'
     get '/posts/:id/likes', to:'posts#likes'
+
+    resources :comments, only: [:create]
   end
 end
