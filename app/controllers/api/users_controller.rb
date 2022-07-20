@@ -11,12 +11,10 @@ class Api::UsersController < ApplicationController
     @posts = @user.posts
 
     @posts = @posts.map do |post|
-      post.attributes.merge(
-        num_likes: post.likes.count,
-        num_comments: post.comments.count, 
-        user: post.user
-      )
+      PostSerializer.new(post).serializable_hash[:data][:attributes]
     end
+
+    @posts = @posts.sort_by { |post| post["created_at"] }
 
     render json: @posts
   end
@@ -34,11 +32,7 @@ class Api::UsersController < ApplicationController
     @posts = @posts.flatten
 
     @posts = @posts.map do |post|
-      post.attributes.merge(
-        num_likes: post.likes.count,
-        num_comments: post.comments.count, 
-        user: post.user
-      )
+      PostSerializer.new(post).serializable_hash[:data][:attributes]
     end
 
     @posts = @posts.sort_by { |post| post["created_at"] }

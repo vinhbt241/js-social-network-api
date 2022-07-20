@@ -1,7 +1,18 @@
 main_user = User.create(name: "Vinh", is_online: true)
 
-Post.create(content: "What a beautiful day! Hope everyone is happy like me!", user_id: 1)
-Post.create(content: "Gonna have a brunch today, anyone wanna join?", user_id: 1)
+user_post_one = Post.create(content: "What a beautiful day! Hope everyone is happy like me!", user_id: 1)
+user_post_one.image.attach(
+  io: File.open("#{Dir.home}/Downloads/example_one.png"),
+  filename: "example_one.png",
+  content_type: 'image/png'
+)
+
+user_post_two = Post.create(content: "Gonna have a brunch today, anyone wanna join?", user_id: 1)
+user_post_two.image.attach(
+  io: File.open("#{Dir.home}/Downloads/example_two.png"),
+  filename: "example_two.png",
+  content_type: 'image/png'
+)
 
 #Create friends
 friend_one = User.create(name: "Viktor", is_online: true)

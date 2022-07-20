@@ -12,4 +12,20 @@ class Api::PostsController < ApplicationController
 
     render json: @likes.to_json(include: [:user])
   end
+
+  def create 
+    @post = Post.new(post_params)
+
+    if @post.save 
+      render json: @post, status: :created, location: @post
+    else 
+      render json: @post.errors, status: :unprocessable_entity
+    end
+  end
+
+  private 
+
+  def post_params 
+    params.require(:post).permit(:content, :user_id, :image)
+  end
 end
