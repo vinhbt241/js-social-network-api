@@ -4,4 +4,10 @@ class Api::LikesController < ApplicationController
       Like.create(post_id: params[:post_id], user_id: params[:user_id])
     end
   end
+
+  def destroy 
+    @like = Like.find(params[:id])
+
+    @like.destroy
+  end
 end
