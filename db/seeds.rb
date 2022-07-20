@@ -21,9 +21,10 @@ Post.create(content: "Hello, I'm John, Vinh definitely can see this post!", user
 Post.create(content: "Hello, I'm Julia, Vinh definitely can see this post!", user_id: 4)
 
 #Test comments
-Comment.create(content: "That is WHOLESOME, thanks Vinh!", post_id: 1, user_id: 2)
-Comment.create(content: "You have a nice day too, Vinh <3", post_id: 1, user_id: 4)
 Comment.create(content: "Almost forgot, remember to stop by my house today for your gift card!", post_id: 1, user_id: 4)
+Comment.create(content: "You have a nice day too, Vinh <3", post_id: 1, user_id: 4)
+Comment.create(content: "That is WHOLESOME, thanks Vinh!", post_id: 1, user_id: 2)
+
 
 #Test likes
 Like.create(post_id: 1, user_id: 1)
