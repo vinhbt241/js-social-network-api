@@ -17,4 +17,8 @@ class Post < ApplicationRecord
   def num_comments 
     comments.count
   end
+
+  def serializer_user 
+    UserSerializer.new(user).serializable_hash[:data][:attributes]
+  end
 end

@@ -2,7 +2,7 @@ class Api::UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
 
-    render json: @user
+    render json: UserSerializer.new(@user).serializable_hash[:data][:attributes]
   end
 
   def user_posts 
@@ -43,6 +43,12 @@ class Api::UsersController < ApplicationController
   def friends 
     @user = User.find(params[:id])
 
-    render json: @user.friends
+    @friends = @user.friends 
+
+    @friends = @friends.map do |friend|
+      UserSerializer.new(friend).serializable_hash[:data][:attributes]
+    end
+
+    render json: @friends
   end
 end

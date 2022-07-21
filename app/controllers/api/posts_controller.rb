@@ -3,14 +3,22 @@ class Api::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comments.order(created_at: :desc)
 
-    render json: @comments.to_json(include: [:user])
+    @comments = @comments.map do |comment|
+      CommentSerializer.new(comment).serializable_hash[:data][:attributes]
+    end
+
+    render json: @comments
   end
 
   def likes 
     @post =  Post.find(params[:id])
     @likes = @post.likes.order(created_at: :desc)
 
-    render json: @likes.to_json(include: [:user])
+    @likes = @likes.map do |like|
+      LikeSerializer.new(like).serializable_hash[:data][:attributes]
+    end
+
+    render json: @likes
   end
 
   def create 
