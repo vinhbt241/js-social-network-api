@@ -10,11 +10,12 @@ class Api::UsersController < ApplicationController
 
     @posts = @user.posts
 
+    @posts = @posts.sort_by { |post| post["created_at"] }
+    @posts = @posts.reverse
+
     @posts = @posts.map do |post|
       PostSerializer.new(post).serializable_hash[:data][:attributes]
     end
-
-    @posts = @posts.sort_by { |post| post["created_at"] }
 
     render json: @posts
   end
@@ -31,11 +32,13 @@ class Api::UsersController < ApplicationController
 
     @posts = @posts.flatten
 
+    @posts = @posts.sort_by { |post| post["created_at"] }
+    @posts = @posts.reverse
+
     @posts = @posts.map do |post|
       PostSerializer.new(post).serializable_hash[:data][:attributes]
     end
 
-    @posts = @posts.sort_by { |post| post["created_at"] }
 
     render json: @posts
   end
