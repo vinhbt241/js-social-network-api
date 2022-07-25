@@ -1,4 +1,10 @@
-main_user = User.create(name: "Vinh", is_online: true)
+main_user = User.create(
+  name: "Vinh", 
+  is_online: true, 
+  email: "vinh@gmail.com",
+  password: "123456Vinh",
+  password_confirmation: "123456Vinh"
+)
 main_user.avatar.attach(
   io: File.open("#{Dir.home}/Downloads/avatar.png"),
   filename: "avatar.png",
@@ -25,9 +31,27 @@ user_post_two.image.attach(
 )
 
 #Create friends
-friend_one = User.create(name: "Viktor", is_online: true)
-friend_two = User.create(name: "John", is_online: false)
-friend_three = User.create(name: "Julia", is_online: false)
+friend_one = User.create(
+  name: "Viktor", 
+  is_online: true,
+  email: "viktor@gmail.com",
+  password: "123456Viktor",
+  password_confirmation: "123456Viktor"
+)
+friend_two = User.create(
+  name: "John", 
+  is_online: false,
+  email: "john@gmail.com",
+  password: "123456John",
+  password_confirmation: "123456John"
+)
+friend_three = User.create(
+  name: "Julia", 
+  is_online: false,
+  email: "julia@gmail.com",
+  password: "123456Julia",
+  password_confirmation: "123456Julia"
+)
 
 main_user.friends.push(friend_one, friend_two, friend_three)
 
