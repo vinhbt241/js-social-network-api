@@ -1,4 +1,6 @@
 class Api::SessionsController < ApplicationController
+  skip_before_action :authenticate_request
+  
   def create 
     user = User.find_by_email(params[:email])
 
@@ -8,9 +10,5 @@ class Api::SessionsController < ApplicationController
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
-  end
-
-  def destroy 
-
   end
 end
