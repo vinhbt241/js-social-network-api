@@ -4,7 +4,10 @@ class User < ApplicationRecord
   has_many :posts
   
   has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
+  has_many :friends, -> { where "status = 'accepted'" }, through: :friendships
+  has_many :requested_friends, -> { where "status = 'requested'" }, through: :friendships, source: :friend
+  has_many :pending_friends, -> { where "status = 'pending'" }, through: :friendships, source: :friend
+  has_many :declined_friends, -> { where "status = 'declined'"}, through: :friendships, source: :friend
 
   has_one_attached :avatar 
   has_one_attached :background_image

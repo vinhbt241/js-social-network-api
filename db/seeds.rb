@@ -52,12 +52,24 @@ friend_three = User.create(
   password: "123456Julia",
   password_confirmation: "123456Julia"
 )
+friend_four = User.create(
+  name: "Viola",
+  is_online: true,
+  email: "viola@gmail.com",
+  password: "123456Viola",
+  password_confirmation: "123456Viola"
+)
 
-main_user.friends.push(friend_one, friend_two, friend_three)
+Friendship.request(main_user, friend_one)
 
-friend_one.friends.push(main_user)
-friend_two.friends.push(main_user)
-friend_three.friends.push(main_user)
+Friendship.request(main_user, friend_two)
+Friendship.accept(main_user, friend_two)
+
+Friendship.request(friend_three, main_user)
+
+Friendship.request(main_user, friend_four)
+Friendship.decline(main_user, friend_four)
+
 
 #Test friend posts
 Post.create(content: "Hello, I'm Viktor, Vinh definitely can see this post!", user_id: 2)
