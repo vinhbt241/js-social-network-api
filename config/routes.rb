@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     get '/users/:id/friends', to: 'users#friends'
     get '/users/:id/pending_friends', to: 'users#pending_friends'
     get '/users/:id/potential_friends', to: 'users#potential_friends'
+    post '/users/send_friend_request', to: 'users#send_friend_request'
+    post '/users/accept_pending_request', to: 'users#accept_pending_request'
+    post '/users/decline_friend_request', to: 'users#decline_friend_request'
 
     resources :posts, only: [:create]
     get '/posts/:id/comments', to:'posts#comments'

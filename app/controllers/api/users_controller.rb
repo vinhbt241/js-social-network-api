@@ -1,6 +1,4 @@
 class Api::UsersController < ApplicationController
-  # skip_before_action :authenticate_request
-
   def show 
     @user = User.find(params[:id])
 
@@ -85,6 +83,27 @@ class Api::UsersController < ApplicationController
     end
 
     render json: @potential_friends
+  end
+
+  def send_friend_request 
+    @user = User.find(params[:user_id])
+    @friend = User.find(params[:friend_id])
+
+    Friendship.request(@user, @friend)
+  end
+
+  def accept_pending_request 
+    @user = User.find(params[:user_id])
+    @friend = User.find(params[:friend_id])
+
+    Friendship.accept(@user, @friend)
+  end
+
+  def decline_friend_request 
+    @user = User.find(params[:user_id])
+    @friend = User.find(params[:friend_id])
+
+    Friendship.decline(@friend, @user)
   end
 
   private 
