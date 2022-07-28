@@ -1,4 +1,6 @@
 class Api::UsersController < ApplicationController
+  # skip_before_action :authenticate_request
+
   def show 
     @user = User.find(params[:id])
 
@@ -53,5 +55,45 @@ class Api::UsersController < ApplicationController
     end
 
     render json: @friends
+  end
+
+  def pending_friends 
+    @user = User.find(params[:id])
+
+    @pending_friends = @user.pending_friends 
+
+    @pending_friends = @pending_friends.map do |pending_friend|
+      UserSerializer.new(pending_friend).serializable_hash[:data][:attributes]
+    end
+
+    render json: @pending_friends
+  end
+
+  def potential_friends 
+    @user = User.find(params[:id])
+
+    @potential_friends = User.all.filter do |potential_friend|
+      unless potential_friend_associated_with_user?(@user, potential_friend)
+        true 
+      else
+        false
+      end
+    end
+
+    @potential_friends = @potential_friends.map do |potential_friend|
+      UserSerializer.new(potential_friend).serializable_hash[:data][:attributes]
+    end
+
+    render json: @potential_friends
+  end
+
+  private 
+
+  def potential_friend_associated_with_user?(user, friend) 
+    (friend.id == user.id) or
+    (user.friends.include?(friend)) or
+    (user.requested_friends.include?(friend)) or
+    (user.pending_friends.include?(friend)) or
+    (user.declined_friends.include?(friend))
   end
 end
