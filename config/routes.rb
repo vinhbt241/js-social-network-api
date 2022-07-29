@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do 
-    resources :users, only: [:show]
+    resources :users, only: [:show, :create]
     get '/users/:id/user_posts', to: 'users#user_posts'
     get '/users/:id/user_and_friends_posts', to:'users#user_and_friends_posts'
     get '/users/:id/friends', to: 'users#friends'

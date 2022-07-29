@@ -1,8 +1,32 @@
 class Api::UsersController < ApplicationController
+  skip_before_action :authenticate_request, only: :create
+
   def show 
     @user = User.find(params[:id])
 
     render json: UserSerializer.new(@user).serializable_hash[:data][:attributes]
+  end
+
+  def create 
+    name = params[:name]
+    email = params[:email]
+    password = params[:password]
+    password_confirmation = params[:password_confirmation]
+
+    new_user = User.new(
+      name: name, 
+      is_online: true,
+      email: email, 
+      password: password, 
+      password_confirmation: password_confirmation
+    )
+
+    if new_user.save!
+      token = jwt_encode(user_id: new_user.id)
+      render json: { token: token, user: UserSerializer.new(new_user).serializable_hash[:data][:attributes] }, status: :ok
+    else
+      render json: { error: 'unauthorized' }, status: :unauthorized
+    end
   end
 
   def user_posts 
