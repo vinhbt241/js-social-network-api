@@ -58,5 +58,3 @@ for i in 8..15 do
   new_friend_request = User.find(i)   
   Friendship.request(new_friend_request, user_test)
 end
-
-
