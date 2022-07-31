@@ -40,7 +40,7 @@ for i in 1..15
   )
 
   current_post.image.attach(
-    io: File.open("./post_images/post_#{i}.jpg"),
+    io: File.open(File.join(File.dirname(__FILE__), "/post_images/post_#{i}.jpg")),
     filename: "post_#{i}.jpg",
     content_type: 'image/jpg'
   )
