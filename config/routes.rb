@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     post '/users/decline_friend_request', to: 'users#decline_friend_request'
     post '/users/update_name', to: 'users#update_name'
     post '/users/update_password', to: 'users#update_password'
+    post '/users/update_avatar', to: 'users#update_avatar'
+    post '/users/update_background_image', to: 'users#update_background_image'
 
     resources :posts, only: [:create]
     get '/posts/:id/comments', to:'posts#comments'

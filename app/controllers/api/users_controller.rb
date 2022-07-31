@@ -131,11 +131,29 @@ class Api::UsersController < ApplicationController
   end
 
   def update_avatar 
+    user = User.find(params[:user_id])
 
+    user.avatar.purge 
+    user.avatar.attach(params[:avatar])
+
+    if user.save!
+      render json: { user: UserSerializer.new(user).serializable_hash[:data][:attributes] }, status: :ok 
+    else 
+      render json: { error: "can't process update" }, status: :bad_request
+    end
   end
 
   def update_background_image 
-    
+    user = User.find(params[:user_id])
+
+    user.background_image.purge 
+    user.background_image.attach(params[:background_image])
+
+    if user.save!
+      render json: { user: UserSerializer.new(user).serializable_hash[:data][:attributes] }, status: :ok 
+    else 
+      render json: { error: "can't process update" }, status: :bad_request
+    end
   end
 
   def update_name 
@@ -145,7 +163,7 @@ class Api::UsersController < ApplicationController
     user.name = new_name 
 
     if user.save!
-      render json: {message: "username updated"}, status: :ok 
+      render json: { message: "username updated" }, status: :ok 
     else 
       render json: { error: "can't process update" }, status: :bad_request
     end
@@ -158,9 +176,9 @@ class Api::UsersController < ApplicationController
     user.password = new_password 
 
     if user.save!
-      render json: {message: "password updated"}, status: :ok 
+      render json: { message: "password updated" }, status: :ok 
     else 
-      render status: :unauthorized
+      render json: { error: "can't process update" }, status: :bad_request
     end
   end
 
