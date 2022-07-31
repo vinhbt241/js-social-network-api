@@ -9,7 +9,7 @@ class AddFriendRelationshipForUser < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index(:friendships, [:user_id, :friend_id], :unique => true)
+    add_index(:friendships, [:user_id, :friend_user_id], :unique => true)
     add_index(:friendships, [:friend_id, :user_id], :unique => true)
     
   end
