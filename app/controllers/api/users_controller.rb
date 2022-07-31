@@ -22,6 +22,17 @@ class Api::UsersController < ApplicationController
     )
 
     if new_user.save!
+      for i in 1..7 do 
+        new_friend = User.find(i)
+        Friendship.request(new_friend, new_user)
+        Friendship.accept(new_friend, new_user)
+      end
+
+      for i in 8..15 do 
+        new_friend_request = User.find(i)   
+        Friendship.request(new_friend_request, new_user)
+      end
+
       token = jwt_encode(user_id: new_user.id)
       render json: { token: token, user: UserSerializer.new(new_user).serializable_hash[:data][:attributes] }, status: :ok
     else
