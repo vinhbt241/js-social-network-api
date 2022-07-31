@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://vinhbt241.github.io/virtuoso-social-network"
+    origins "https://vinhbt241.github.io/virtuoso-social-network"
 
     resource "*",
       headers: :any,
