@@ -130,6 +130,40 @@ class Api::UsersController < ApplicationController
     Friendship.decline(@friend, @user)
   end
 
+  def update_avatar 
+
+  end
+
+  def update_background_image 
+    
+  end
+
+  def update_name 
+    user = User.find(params[:user_id])
+    new_name = params[:name]
+
+    user.name = new_name 
+
+    if user.save!
+      render json: {message: "username updated"}, status: :ok 
+    else 
+      render json: { error: "can't process update" }, status: :bad_request
+    end
+  end
+
+  def update_password 
+    user = User.find(params[:user_id])
+    new_password = params[:password]
+
+    user.password = new_password 
+
+    if user.save!
+      render json: {message: "password updated"}, status: :ok 
+    else 
+      render status: :unauthorized
+    end
+  end
+
   private 
 
   def potential_friend_associated_with_user?(user, friend) 

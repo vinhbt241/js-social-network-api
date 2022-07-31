@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     post '/users/send_friend_request', to: 'users#send_friend_request'
     post '/users/accept_pending_request', to: 'users#accept_pending_request'
     post '/users/decline_friend_request', to: 'users#decline_friend_request'
+    post '/users/update_name', to: 'users#update_name'
+    post '/users/update_password', to: 'users#update_password'
 
     resources :posts, only: [:create]
     get '/posts/:id/comments', to:'posts#comments'
