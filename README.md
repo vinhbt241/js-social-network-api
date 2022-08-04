@@ -12,4 +12,8 @@ Provide API for the front-end application, as well as interact with data stored.
 
 ## Live Preview
 - You can checkout the website [here](https://vinhbt241.github.io/js-social-network/)
-- If you interesed in the fron-end, visit [here](https://github.com/vinhbt241/js-social-network)
+- If you interesed in the front-end, visit [here](https://github.com/vinhbt241/js-social-network)
+
+## What I've used 
+- Front-end: CSS and ReactJS
+- Back-end: Ruby on Rails
