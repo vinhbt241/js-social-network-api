@@ -1,24 +1,15 @@
-# README
+# Virtuoso - The social network - API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview 
+This application is the back-end of Virtuoso - The social network. Its functions include:
+- Authentication with JWT
+- CRUD User and Post
+- Store number of likes and comments in a post
+- Build model and controller to allow user to send/accept/decline friend requests
 
-Things you may want to cover:
+## Purpose 
+Provide API for the front-end application, as well as interact with data stored.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Live Preview
+- You can checkout the website [here](https://vinhbt241.github.io/js-social-network/)
+- If you interesed in the fron-end, visit [here](https://github.com/vinhbt241/js-social-network)
